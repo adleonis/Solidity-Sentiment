@@ -1,0 +1,28 @@
+body {
+    background-color: MintCream;
+    text-align: center;
+}
+
+h1 {
+    color: DeepPink;
+    text-align: center;
+    font-size: 40px;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+#s1 {
+  position: absolute;
+  width: 600px;
+  left: 30%;
+  margin: 0px 0 0 0px;
+  transform: translate(-50%, 0%)
+}
+
+.thing{
+  color: Blue;
+
+}

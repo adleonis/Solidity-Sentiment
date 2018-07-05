@@ -1,0 +1,30 @@
+{
+  "name": "sentiment",
+  "version": "1.0.0",
+  "description": "Distributed Free Expression Dapp",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adleonis/Solidity-Sentiment.git"
+  },
+  "keywords": [
+    "ethereum",
+    "expression",
+    "freedom"
+  ],
+  "author": "Stephane Gallet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adleonis/Solidity-Sentiment/issues"
+  },
+  "homepage": "https://github.com/adleonis/Solidity-Sentiment#readme",
+  "dependencies": {
+    "web3": "github:ethereum/web3.js"
+  }
+}
