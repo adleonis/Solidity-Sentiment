@@ -14,6 +14,9 @@
 
     <!-- Custom styles for this template -->
     <link href="static/cover.css" rel="stylesheet">
+    
+    <script src="/static/web3.min.js"></script>
+
   </head>
 
   <body class="text-center">
@@ -43,8 +46,8 @@
           <form class="needs-validation" novalidate>
 
             <div class="mb-3">
-              <label for="address">Message</label>
-              <input type="text" class="form-control" id="address" placeholder="Marry me Ana?" required>
+              <label for="message">Message</label>
+              <input type="text" class="form-control" id="message" placeholder="Ana I love you" required>
               <div class="invalid-feedback">
                 Please enter your message (140 characters max).
               </div>
@@ -52,7 +55,7 @@
 
 
               <div class="mb-3">
-              <label for="username">From (can be blank)</label>
+              <label for="author">From (can be blank)</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">@</span>
@@ -64,15 +67,58 @@
               </div>
             </div>
 
+              <div class="mb-3">
+              <label for="amount">Bid Amount</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">wei</span>
+                </div>
+                <input type="text" class="form-control" id="amount" placeholder="300" required>
+                <div class="invalid-feedback" style="width: 100%;">
+                  Bids are placed in the queue by amount, you cannot send an empty bid.
+                </div>
+              </div>
+            </div>
+
           <div class="col">  
-          <a href="#" class="btn btn-lg btn-secondary">Publish</a>
+          <button class="btn btn-lg btn-secondary" id="button">Publish Message</button>
             </div>
             </div>
         </div>
+      
+        &nbsp
+        &nbsp
+        &nbsp
+        &nbsp
+        &nbsp
+        &nbsp
+        <div class="row justify-content-center">
+        <div class="col-md-8 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Top Message</span>
+            <span class="badge badge-secondary badge-pill">1</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0" id="display1-msg"></h6>
+                <small class="text-muted" id="display1-auth"></small>
+              </div>
+              <span class="text-muted" id="display1-paid"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong>$20</strong>
+            </li>
+          </ul>
+
+        </div>
+     </div>   
+
 
         
       </div>
-
+      
 
       </main>
 
@@ -92,6 +138,294 @@
     <script>window.jQuery || document.write('<script src="static/jquery-slim.min.js"><\/script>')</script>
     <script src="static/popper.min.js"></script>
     <script src="static/bootstrap.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script> 
+        //if (typeof web3 !== 'undefined') {
+        //    web3 = new Web3(web3.currentProvider);
+        //} else {
+        //    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        //}
+
+        // Is there is an injected web3 instance?
+        if (typeof web3 !== 'undefined') {
+            web3Provider = web3.currentProvider;
+            web3 = new Web3(web3.currentProvider);
+        } else {
+        // If no injected web3 instance is detected, fallback to Ganache.
+            web3Provider = new web3.providers.HttpProvider('http://127.0.0.1:8545');
+            web3 = new Web3(App.web3Provider);
+        }
+
+
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+
+        var SentimentContract = web3.eth.contract([
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "message",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "author",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "addres",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "paid",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "name": "tim",
+                "type": "uint256"
+            }
+        ],
+        "name": "broadcastNewBid",
+        "type": "event"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "received",
+                "type": "uint256"
+            },
+            {
+                "name": "_message",
+                "type": "string"
+            }
+        ],
+        "name": "acceptBid",
+        "outputs": [
+            {
+                "name": "accept",
+                "type": "bool"
+            }
+        ],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_message",
+                "type": "string"
+            },
+            {
+                "name": "_author",
+                "type": "string"
+            }
+        ],
+        "name": "recordbid",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "newMin",
+                "type": "uint256"
+            }
+        ],
+        "name": "resetMin",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "updateBal",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "withDraw",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "bidListStor",
+        "outputs": [
+            {
+                "name": "message",
+                "type": "string"
+            },
+            {
+                "name": "author",
+                "type": "string"
+            },
+            {
+                "name": "addres",
+                "type": "address"
+            },
+            {
+                "name": "paid",
+                "type": "uint256"
+            },
+            {
+                "name": "tim",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "Bids",
+        "outputs": [
+            {
+                "name": "message",
+                "type": "string"
+            },
+            {
+                "name": "author",
+                "type": "string"
+            },
+            {
+                "name": "addres",
+                "type": "address"
+            },
+            {
+                "name": "paid",
+                "type": "uint256"
+            },
+            {
+                "name": "tim",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "cBal",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "minAmount",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "superuser",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }
+]);
+
+    var Sentiment = SentimentContract.at("0x47ab575c92b84caf0126165cdd35de8ed12f9ca4");
+    console.log(Sentiment);
+
+    var bidEvent = Sentiment.broadcastNewBid();
+
+    $("#button").click(function() {
+        Sentiment.recordbid.sendTransaction($("#message").val(), $("#author").val(), {"from": web3.eth.accounts[0], "value": $("#amount").val()},function(error, transactionHash){            
+        } );
+
+        });
+
+    bidEvent.watch(function(error, result) {
+        if (!error) {
+            $("#display1-msg").html(result.args.message);
+        } else {
+            console.log(error);
+        }
+    });
+
+    bidEvent.watch(function(error, result) {
+        if (!error) {
+            $("#display1-auth").html(result.args.author);
+        } else {
+            console.log(error);
+        }
+    });
+
+    bidEvent.watch(function(error, result) {
+        if (!error) {
+            $("#display1-paid").html(result.args.paid + ' Wei');
+        } else {
+            console.log(error);
+        }
+    });
+
+
+
+    </script>
+
   </body>
 </html>
 
