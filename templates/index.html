@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <link rel="icon" href="/static/S.png">
 
     <title>Sentiment</title>
 
@@ -24,20 +24,29 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
-          <h3 class="masthead-brand">Sentiment Dapp</h3>
+          <h3 class="masthead-brand">Sentiment</h3>
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="/about">About</a>
             <a class="nav-link" href="#">Contact</a>
           </nav>
         </div>
       </header>
+        &nbsp
+        &nbsp
+        &nbsp
 
       <main role="main" class="row justify-content-center">
         <div class="col">
-        <h1 class="cover-heading">Sentiment: Express yourself</h1>
-        <p class="lead">A fully decentralized self-expression platform, tell the world how you feel, what you think, express your 'Sentiment'</p>
+        <h1 class="cover-heading"> <br> Express yourself <br> </h1>
+        <p class="lead">Sentiment is fully decentralized self-expression platform, <br> 
+        tell the world how you feel, what you think, <br> 
+        express your 'Sentiment', free from censorship.</p>
+    
         <p class="lead">
+        &nbsp
+        &nbsp
+        
         </p>
 
          <div class="row justify-content-center">
@@ -387,7 +396,7 @@
     }
 ]);
 
-    var Sentiment = SentimentContract.at("0x47ab575c92b84caf0126165cdd35de8ed12f9ca4");
+    var Sentiment = SentimentContract.at("0x81909acb61d9d8d1a13f77604c3295b4ed43bf2c");
     console.log(Sentiment);
 
     var bidEvent = Sentiment.broadcastNewBid();

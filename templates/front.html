@@ -1,0 +1,521 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Album example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/album.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">Messages you submit on Sentiment are saved on the Ethereum Blockchain, then transmitted to our partner platforms.  Every 15s, the message at the top of the queue is displayed.  Your message is inserted into the queue according to price, bid higher if your message is urgent.  Price is solely set by demand.</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">More</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://www.linkedin.com/in/sgallet/" class="text-white">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>Sentiment</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Sentiment</h1>
+          <p class="lead text-muted">A fully decentralized self-expression platform, tell the world how you feel, what you think, express your 'Sentiment'</p>
+          <p><a href="#" class="btn btn-primary my-2"  type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Bid for your message</a>
+          </p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+      <div class="container">
+      <div id="collapseExample" class="row justify-content-md-center panel-collapse collapse">
+         
+        <div class="col-6 order-md-1 justify-content-right">
+          <h4 class="mb-3">Bid for your message:</h4>
+          <form class="needs-validation" novalidate>
+
+            <div class="col-8 justify-content-center">
+              <label for="message">Message</label>
+              <input type="text" class="form-control" id="message" placeholder="Your words can change the world!" required>
+              <div class="invalid-feedback">
+                Please enter your message (140 characters max).
+              </div>
+            </div>
+
+
+              <div class="col-8 justify-content-center">
+              <label for="author">From (can be blank)</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
+                <input type="text" class="form-control" id="author" placeholder="Stephane">
+                <div class="invalid-feedback" style="width: 100%;">
+                  Your username is not required.
+                </div>
+              </div>
+            </div>
+              <div class="col-8 justify-content-center">
+              <label for="amount">Bid Amount</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">wei</span>
+                </div>
+                <input type="text" class="form-control" id="amount" placeholder="300" required>
+                <div class="invalid-feedback" style="width: 100%;">
+                  Bids are placed in the queue by amount, you cannot send an empty bid.
+                </div>
+              </div>
+            </div>
+          <p>
+          </p>
+
+          <div class="row justify-content-md-center">
+          <button class="btn btn-lg btn-secondary xs-center" id="button">Publish Message</button>
+            </div>
+
+        </div>
+
+        <div class="col">
+          <h4>How to Use</h4>      
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Basics</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Technical</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Why</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Before attempting to publish a message, make sure you have Ether and have installed Metamask.  Your message will be processed by the Smart Contract 'Sentiment', which is a queue ordered by price, which automatically consumes the top message every 15s. Once you hit the 'Publish Message' button, Metamask will ask for the confirmation of your transaction on Ethereum.  After confirming, the page will automatically refresh to show your message in the queue, but this can take sometimes upwards of a minute, depending on network activity. </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Messages can be up to 140 characters.  The author is not required, but it can be any alphanumeric string (an email, handle, name, company...)  The price you set in Wei will be automatically sent to Metamask, all you have to do is confirm the transaction.</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Sentiment is a decentralized self-publishing advertising platform.  Anyone can connect their device to start earning tokens, anything from a Jumbotron on Times Square to a TV in a hair-salon.  On the flip-side, it also allows not only for multi-week repeating ads, but single one-off messages.  This opens up the ability for individual people to express their opinions to a whole new scale, as well as messages which traditionally find no strong individual sponsor to now have the combined sponsorship of millions, hopefully changing the way we solve problems together.</div>
+</div>
+
+  
+        </div>
+
+        </div>
+        </div>
+        
+        <p>
+        </p>
+
+        <div class="container">
+
+          <div id="card-list" class="row">
+
+          </div>
+          <ul id="items-list" class="list-group">
+          
+          </ul>    
+
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+          <p>A Dapp using the Ethereum Blockchain, Python, and IPFS. By <a href="https://www.linkedin.com/in/sgallet/">SJCG</a>.</p>
+          <p>You probably need <a href="https://metamask.io/">Metamask</a> or the <a href="https://ethereum.org/">MIST Browser</a> to use this Dapp.</p>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/static/jquery-slim.min.js"><\/script>')</script>
+    <script src="/static/popper.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="static/holder.min.js"></script>
+
+    <script>
+    //if (typeof web3 !== 'undefined') {
+        //    web3 = new Web3(web3.currentProvider);
+        //} else {
+        //    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        //}
+
+        // Is there is an injected web3 instance?
+        if (typeof web3 !== 'undefined') {
+            web3Provider = web3.currentProvider;
+            web3 = new Web3(web3.currentProvider);
+        } else {
+        // If no injected web3 instance is detected, fallback to Ganache.
+            web3Provider = new web3.providers.HttpProvider('http://127.0.0.1:8545');
+            web3 = new Web3(App.web3Provider);
+        }
+
+
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+
+        var SentimentContract = web3.eth.contract([
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "name": "message",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "author",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "name": "addres",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "paid",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "name": "tim",
+                "type": "uint256"
+            }
+        ],
+        "name": "broadcastNewBid",
+        "type": "event"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "received",
+                "type": "uint256"
+            },
+            {
+                "name": "_message",
+                "type": "string"
+            }
+        ],
+        "name": "acceptBid",
+        "outputs": [
+            {
+                "name": "accept",
+                "type": "bool"
+            }
+        ],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_message",
+                "type": "string"
+            },
+            {
+                "name": "_author",
+                "type": "string"
+            }
+        ],
+        "name": "recordbid",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "newMin",
+                "type": "uint256"
+            }
+        ],
+        "name": "resetMin",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "updateBal",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "withDraw",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "bidListStor",
+        "outputs": [
+            {
+                "name": "message",
+                "type": "string"
+            },
+            {
+                "name": "author",
+                "type": "string"
+            },
+            {
+                "name": "addres",
+                "type": "address"
+            },
+            {
+                "name": "paid",
+                "type": "uint256"
+            },
+            {
+                "name": "tim",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "Bids",
+        "outputs": [
+            {
+                "name": "message",
+                "type": "string"
+            },
+            {
+                "name": "author",
+                "type": "string"
+            },
+            {
+                "name": "addres",
+                "type": "address"
+            },
+            {
+                "name": "paid",
+                "type": "uint256"
+            },
+            {
+                "name": "tim",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "cBal",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "minAmount",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "superuser",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    }    
+]);
+
+    var Sentiment = SentimentContract.at("0x81909acb61d9d8d1a13f77604c3295b4ed43bf2c");
+
+
+    function refrsh(){
+    
+    var myNode = document.getElementById("items-list");
+    while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+    }
+
+
+    var i;
+    for (i = 0; i < 99; i++){
+
+    //Insert new card into html
+
+    //Get each item of the whole list(accessible since BidListStor is a public variable in contract
+    var item = Sentiment.bidListStor(i,function(error, result){
+    if(!error) {
+       console.log(JSON.stringify(result));
+       var line = JSON.stringify(result);
+       
+        //Item list variable
+        var $listitems = $('<li class="list-group-item d-flex justify-content-between align-items-center">\
+        <b>' + result[0] + '</b>   | by  </b>' + result[1] + '</b>  @  ' + convert(result[4]) +'\
+        <span class="badge badge-primary badge-pill">' + result[3]  + ' Wei</span>\
+        </li>');
+
+    
+       $("#items-list").append($listitems);        
+    }
+    else {
+       //console.error(error);
+       //run = false;
+    }});
+    console.log(item);
+
+    } //end for    
+    } //end refrsh function
+
+    function convert(inpuut){
+
+ // Unixtimestamp
+ var unixtimestamp = inpuut;
+
+ // Months array
+ var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+ // Convert timestamp to milliseconds
+ var date = new Date(unixtimestamp*1000);
+
+ // Year
+ var year = date.getFullYear();
+
+ // Month
+ var month = months_arr[date.getMonth()];
+
+ // Day
+ var day = date.getDate();
+
+ // Hours
+ var hours = date.getHours();
+
+ // Minutes
+ var minutes = "0" + date.getMinutes();
+
+ // Seconds
+ var seconds = "0" + date.getSeconds();
+
+ // Display date time in MM-dd-yyyy h:m:s format
+ var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+ 
+ return convdataTime;
+ 
+}
+
+
+    refrsh(); //call once to get list populated on page load
+    var bidEvent = Sentiment.broadcastNewBid();
+
+    //watch for every time a new bid is broadcast and refresh the whole list
+    bidEvent.watch(function(error, result) {
+        if (!error) {
+            refrsh(); //call to refresh list whenever a new bid is put into list
+        } else {
+            console.log(error);
+        }
+    });
+
+
+    $("#button").click(function() {
+        Sentiment.recordbid.sendTransaction($("#message").val(), $("#author").val(), {"from": web3.eth.accounts[0], "value": $("#amount").val()},function(error, transactionHash){
+        } );
+
+        });
+
+    </script>
+
+  </body>
+</html>
+

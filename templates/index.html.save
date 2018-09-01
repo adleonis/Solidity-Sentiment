@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Sentiment</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/cover.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Sentiment Dapp</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="row justify-content-center">
+        <h1 class="cover-heading">Sentiment: Express yourself</h1>
+        <p class="lead">A fully decentralized self-expression platform, tell the world how you feel, express your 'Sentiment'</p>
+        <p class="lead">
+        </p>
+
+         <div class="inner cover">
+         <div class="col-md-8 order-md-1 justify-content-center">
+          <h4 class="mb-3">Bid for your message:</h4>
+          <form class="needs-validation" novalidate>
+
+            <div class="mb-3">
+              <label for="address">Message</label>
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+              <div class="invalid-feedback">
+                Please enter your message (140 characters max).
+              </div>
+            </div>
+
+
+              <div class="mb-3">
+              <label for="username">Username</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
+                <input type="text" class="form-control" id="username" placeholder="Username">
+                <div class="invalid-feedback" style="width: 100%;">
+                  Your username is not required.
+                </div>
+              </div>
+            </div>
+            </div>
+
+          <div class="inner cover justify-content-center">  
+          <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+            </div>
+
+
+
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>A Dapp using the Ethereum Blockchain, Python, and IPFS. By <a href="https://www.linkedin.com/in/sgallet/">SJCG</a>.</p>
+          <p>You probably need <a href="https://metamask.io/">Metamask</a> or the <a href="https://ethereum.org/">MIST Browser</a> to use this Dapp.</p>
+        </div>
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="static/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="static/jquery-slim.min.js"><\/script>')</script>
+    <script src="static/popper.min.js"></script>
+    <script src="static/bootstrap.min.js"></script>
+  </body>
+</html>
+

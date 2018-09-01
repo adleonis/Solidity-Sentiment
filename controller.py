@@ -8,9 +8,9 @@ Main site Controller.  Uses flask to throw templates,
 '''
 
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash
-from flask_login import LoginManager, login_required, current_user
-from flask_bootstrap import Bootstrap
-import flask_login
+#from flask_login import LoginManager, login_required, current_user
+#from flask_bootstrap import Bootstrap
+#import flask_login
 import os
 
 
@@ -21,11 +21,11 @@ import time
 #import orm
 #import scraper
 
-login_manager = LoginManager()
+#login_manager = LoginManager()
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
-Bootstrap(app)
+#app.secret_key = os.urandom(24)
+#Bootstrap(app)
 
 @app.template_filter('BMk')
 def translate_followers(s):
@@ -72,7 +72,26 @@ def show_app():
     '''
     if request.method == 'GET':
         # This is an HTTP get request.
-        return render_template('index.html')
+        return render_template('front.html')
+
+
+@app.route('/about', methods=['GET', 'POST'])
+def about():
+    ''' 
+    ..Main website about page -- product info
+    '''
+    if request.method == 'GET':
+        # This is an HTTP get request.
+        return render_template('about.html')
+
+@app.route('/front', methods=['GET', 'POST'])
+def front():
+    ''' 
+    ..Main app front page -- message display and consumption
+    '''
+    if request.method == 'GET':
+        # This is an HTTP get request.
+        return render_template('front.html')
 
 
 
